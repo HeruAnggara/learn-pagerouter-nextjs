@@ -60,7 +60,7 @@ export default function RootLayout({
         <main className="container mx-auto my-2 p-4 bg-neutral-100">
           {children}
         </main>
-        <footer className="w-full mx-auto bg-gray-800 text-center text-white text-base py-4 bottom-0 lg:absolute">
+        <footer className="w-full mx-auto bg-gray-800 text-center text-white text-base py-4 bottom-0 lg:sticky">
           <p>Copyright &copy; {new Date().getFullYear()}</p>
         </footer>
       </div>
