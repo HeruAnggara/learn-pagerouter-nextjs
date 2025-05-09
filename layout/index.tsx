@@ -3,6 +3,8 @@ import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { useRouter } from 'next/router'
+import { Button } from '@/components/ui/button'
+import { signOut, useSession } from 'next-auth/react'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -21,6 +23,9 @@ export default function RootLayout({
   children: React.ReactNode
   metaTitle: string
 }) {
+  const session = useSession()
+  console.log(session)
+
   return (
     <>
       <Head>
@@ -32,37 +37,46 @@ export default function RootLayout({
       <div className={`${geistSans.variable} ${geistMono.variable}`}>
         <header className="w-full flex justify-between p-4 px-8 items-center bg-white border-b shadow-lg shadow-gray-100">
           <h1 className="text-xl font-bold italic">Welcome to the Next</h1>
-          <ul className="flex space-x-4 font-semibold">
-            <li>
-              <Link
-                href="/"
-                className={`${
-                  metaTitle == '' ? 'border-b pb-2 text-black' : 'text-gray-500'
-                }`}
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/about"
-                className={`${
-                  metaTitle == 'about'
-                    ? 'border-b pb-2 text-black'
-                    : 'text-gray-500'
-                }`}
-              >
-                About
-              </Link>
-            </li>
-          </ul>
+          {session.data && (
+            <ul className="flex space-x-4 font-semibold">
+              <li>
+                <Link
+                  href="/"
+                  className={`${
+                    metaTitle == ''
+                      ? 'border-b pb-2 text-black'
+                      : 'text-gray-500'
+                  }`}
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about"
+                  className={`${
+                    metaTitle == 'about'
+                      ? 'border-b pb-2 text-black'
+                      : 'text-gray-500'
+                  }`}
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="" onClick={() => signOut()}>
+                  Signout Google
+                </Link>
+              </li>
+            </ul>
+          )}
         </header>
         <main className="container mx-auto my-2 p-4 bg-neutral-100">
           {children}
         </main>
-        <footer className="w-full mx-auto bg-gray-800 text-center text-white text-base py-4 bottom-0 lg:absolute">
+        {/* <footer className="w-full mx-auto bg-gray-800 text-center text-white text-base py-4 bottom-0 lg:sticky">
           <p>Copyright &copy; {new Date().getFullYear()}</p>
-        </footer>
+        </footer> */}
       </div>
     </>
   )
