@@ -144,20 +144,20 @@ export default function Home() {
   )
 }
 
-export const getServerSideProps = async (context: any) => {
-  const token = await getToken({
-    req: context.req,
-    secret: process.env.NEXTAUTH_SECRET,
-  })
+// export const getServerSideProps = async (context: any) => {
+//   const token = await getToken({
+//     req: context.req,
+//     secret: process.env.NEXTAUTH_SECRET,
+//   })
 
-  if (!token) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
-    }
-  }
+//   if (!token) {
+//     return {
+//       redirect: {
+//         destination: '/login',
+//         permanent: false,
+//       },
+//     }
+//   }
 
-  return { props: {} }
-}
+//   return { props: {} }
+// }

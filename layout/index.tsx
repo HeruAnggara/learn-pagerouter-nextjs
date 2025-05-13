@@ -35,9 +35,9 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={`${geistSans.variable} ${geistMono.variable}`}>
-        <header className="w-full flex justify-between p-4 px-8 items-center bg-white border-b shadow-lg shadow-gray-100">
-          <h1 className="text-xl font-bold italic">Welcome to the Next</h1>
-          {session.data && (
+        {session.data && (
+          <header className="w-full flex justify-between p-4 px-8 items-center bg-white border-b shadow-lg shadow-gray-100">
+            <h1 className="text-xl font-bold italic">Welcome to the Next</h1>
             <ul className="flex space-x-4 font-semibold">
               <li>
                 <Link
@@ -69,8 +69,8 @@ export default function RootLayout({
                 </Link>
               </li>
             </ul>
-          )}
-        </header>
+          </header>
+        )}
         <main className="container mx-auto my-2 p-4 bg-neutral-100">
           {children}
         </main>
