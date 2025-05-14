@@ -29,20 +29,20 @@ export default function Login() {
   )
 }
 
-export const getServerSideProps = async (context: any) => {
-  const token = await getToken({
-    req: context.req,
-    secret: process.env.NEXTAUTH_SECRET,
-  })
+// export const getServerSideProps = async (context: any) => {
+//   const token = await getToken({
+//     req: context.req,
+//     secret: process.env.NEXTAUTH_SECRET,
+//   })
 
-  if (token) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    }
-  }
+//   if (token) {
+//     return {
+//       redirect: {
+//         destination: '/',
+//         permanent: false,
+//       },
+//     }
+//   }
 
-  return { props: {} }
-}
+//   return { props: {} }
+// }
